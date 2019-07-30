@@ -42,7 +42,7 @@ def file_to_set(file_name):
     results = set()
     with open(file_name, 'rt') as f:
         for line in f:
-            results.add(line.replace('\n',''))
+            results.add(line.replace('\n', ''))
     return results
 
 
