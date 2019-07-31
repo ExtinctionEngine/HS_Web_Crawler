@@ -24,7 +24,7 @@ class Spider:
         self.boot()
         self.crawl_page('First spider', Spider.base_url)
 
-    @staticmethod
+    @staticmethod  # static method is a method where the class instance self is unnecessary.
     def boot():
         create_project_dir(Spider.project_name)
         create_data_files(Spider.project_name, Spider.base_url)
@@ -51,8 +51,8 @@ class Spider:
                 html_string = html_bytes.decode("utf-8")
             finder = LinkFinder(Spider.base_url, page_url)
             finder.feed(html_string)
-        except Exception as e:
-            print(str(e))
+        except:
+            print('Error: can not crawl page')
             return set()
         return finder.page_links()
 
@@ -62,7 +62,7 @@ class Spider:
         for url in links:
             if (url in Spider.queue) or (url in Spider.crawled):
                 continue
-            if Spider.domain_name != get_domain_name(url):
+            if Spider.domain_name not in url:
                 continue
             Spider.queue.add(url)
 
