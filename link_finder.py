@@ -5,7 +5,7 @@ from urllib import parse
 class LinkFinder(HTMLParser):
 
     def __init__(self, base_url, page_url):
-        super().__init__()
+        super().__init__()  # returns a temporary object of the superclass that allows you to call superclass’s methods.
         self.base_url = base_url
         self.page_url = page_url
         self.links = set()
